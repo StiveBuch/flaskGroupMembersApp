@@ -18,7 +18,7 @@ def getGroups():
     res_string='<H2>сайт</H2>'
     for group in groups:
         print('https://vk.com/club', group['id'],'  ',group['name'], sep='')
-        res_string+='<img src=\''
+        res_string+='<img src=\"'
         res_string+=group['photo_50']
         res_string+='\'>'
         res_string+='<br>'
@@ -26,7 +26,7 @@ def getGroups():
         res_string+=group['name']
         res_string+='</p>'
         # res_string+='<br>'
-        res_string+='<a href=\'>'
+        res_string+='<a href=\">'
         res_string+='https://vk.com/club'
         res_string+= str(group['id'])
         res_string+='\'>https://vk.com/club'
@@ -46,30 +46,32 @@ def getGroupMembers():
     allGroups = api.groups.getMembers(group_id=211211142,offset=0,count=100,fields='bdate,city,sex,country,photo_400_orig',v=5.199)
     
     groups=allGroups['items']
-    print(groups)
+    girls=list(filter(lambda item: item['sex'] == 1, groups)) # 
+    print('len girls=',len(girls),'len all = ', len(groups))
     res_string='<H2>сайт</H2>'
-    for man in groups:
-        # sex = 2 - это мужчины - информацию о них не выводить
-        if man.get('sex')==2:
-            print(man.get('sex'))
-            continue # переход к следующему витку цикла
+    for man in girls:
         # печать отладочной информации в консоль - чисто для себя
         print('https://vk.com/id', man['id'],'  ',str(man.get('first_name')) + ' '+  str(man.get('last_name')), sep='')
-        res_string+='<img src=\''
+        # картинка
+        res_string+='<img src=\"'
         res_string+=str(man.get('photo_400_orig'))
         res_string+='\'>'
+        # перенос
         res_string+='<br>'
+        # название (параграф)
         res_string+='<p>'
         res_string+=str(man.get('first_name')) + ' '+  str(man.get('last_name'))
         res_string+='</p>'
-        # res_string+='<br>'
-        res_string+='<a href=\'>'
+        # ссылка
+        res_string+='<a href=\">'
         res_string+='https://vk.com/id'
         res_string+= str(man['id'])
         res_string+='\'>https://vk.com/id'
         res_string+=str(man['id'])
         res_string+='</a>'
+        # перенос
         res_string+='<br>'
+        # имя (параграф)
         res_string+='  <p>'
         res_string+=str(man.get('first_name'))
         res_string+=str(man.get('last_name'))
