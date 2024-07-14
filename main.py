@@ -1,8 +1,11 @@
 import vk
 from flask import Flask
 from flask import render_template_string
-
+import os
+from envparse import env
+env.read_envfile()
 app = Flask(__name__)
+token = env('API_TOKEN')
 
 @app.route("/")
 def getGroups():
