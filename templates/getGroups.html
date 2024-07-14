@@ -1,0 +1,26 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Показать членов группы {{ context['title'] }}</title>
+</head>
+<body>
+    <h2>Data from VK Api https://vk.com/club{{ context['title'] }}</h2>
+    <div id="content">
+
+        {% for group in context['1'] %}
+            <img src="{{ group['photo_50'] }}">
+            <br>
+            <p>{{ group.get('name') }}
+
+                {% for key, value in group.items() %}
+                    <p>{{ key }} : {{ key }}</p>
+
+                {% endfor %}
+
+            </p>
+            <a href="https://vk.com/club{{ group['id'] }}">https://vk.com/club{{ group['id'] }}
+            </a>
+            <br><br>
+        {% endfor %}
+</body>
+</html>

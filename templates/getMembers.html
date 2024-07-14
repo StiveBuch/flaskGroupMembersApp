@@ -1,0 +1,22 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Показать членов группы</title>
+</head>
+<body>
+    <h2>Data from VK Api</h2>
+    <div id="content">
+
+        {% for man in context %}
+            <img src="{{ man['photo_400_orig'] }}">
+            <br>
+            <p> {{key}} {{val}} </p>
+            <p>{{ man.get('name') }}
+            </p>
+
+            <a href="https://vk.com/id{{ man['id'] }}">https://vk.com/id{{ man['id'] }}
+            </a>
+            <br>
+        {% endfor %}
+</body>
+</html>
