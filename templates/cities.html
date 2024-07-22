@@ -1,0 +1,16 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Показать города</title>
+</head>
+<body>
+    <h2>Города from VK Api</h2>
+    <div id="content">
+
+        {% for man in context %}
+            {% for key,val in man.items() %}
+                <p> {{key}} {{val}} </p>
+            {% endfor %} 
+        {% endfor %}
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск по городу</title>
+</head>
+<body>
+    <h2>Введите город</h2>
+    <form method="POST" action="search_form">
+        <input type="text" name="text" value="1">
+        
+        <input type="submit">
+    </form>
+    <div id="content">
+        
+        {% for man in context %}
+            <img src="{{ man['photo_max_orig'] }}">
+            <br>
+            <p> {{man['bdate']}} ,{{man['career']}},{{man['screen_name']}},{{ man.get('name') }}
+                {{man['about']}},{{man['wall_comments']}},{{man['relatives']}},{{man['books']}},{{man['games']}} </p>
+            <p>{{ man.get('name') }}
+            </p>
+
+            <a href="https://vk.com/id{{ man['id'] }}">https://vk.com/id{{ man['id'] }}
+            </a>
+            <br><br>
+        {% endfor %}
+    </div>
+</body>
+</html>
